@@ -22,18 +22,27 @@ class InstabugModularManager {
   List<ModularRoute> wrapRoutes(
     List<ModularRoute> routes, {
     String parent = '/',
+    bool wrapModules = true,
   }) {
     return routes
         .map(
-          (route) => wrapRoute(route, parent: parent),
+          (route) => wrapRoute(
+            route,
+            parent: parent,
+            wrapModules: wrapModules,
+          ),
         )
         .toList();
   }
 
-  ModularRoute wrapRoute(ModularRoute route, {String parent = '/'}) {
+  ModularRoute wrapRoute(
+    ModularRoute route, {
+    String parent = '/',
+    bool wrapModules = true,
+  }) {
     final fullPath = (parent + route.name).replaceFirst('//', '/');
 
-    if (route is ModuleRoute && route.context is Module) {
+    if (route is ModuleRoute && route.context is Module && wrapModules) {
       final module = InstabugModule(
         route.context as Module,
         path: fullPath,
@@ -43,7 +52,7 @@ class InstabugModularManager {
         route.name,
         module: module,
       );
-    } else if (route is ParallelRoute) {
+    } else if (route is ParallelRoute && route is! ModuleRoute) {
       ModularChild? child;
 
       if (route.child != null) {
@@ -58,6 +67,7 @@ class InstabugModularManager {
         children: wrapRoutes(
           route.children,
           parent: fullPath,
+          wrapModules: wrapModules,
         ),
       );
     }
