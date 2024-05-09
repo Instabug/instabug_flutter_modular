@@ -10,6 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  meta: ^1.3.0
+  flutter_modular: '>=5.0.0 <6.0.0'
+  instabug_flutter:
+    # TODO: Change Git to the package on Pub once manual screen loading support is out in the official SDK.
+    git:
+      url: git@github.com:Instabug/instabug-flutter.git
+      ref: snapshot/feat/support-manual-screen-loading
+
 
 dev_dependencies:
   flutter_test:
