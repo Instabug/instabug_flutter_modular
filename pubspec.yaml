@@ -16,7 +16,7 @@ dependencies:
     # TODO: Change Git to the package on Pub once manual screen loading support is out in the official SDK.
     git:
       url: git@github.com:Instabug/instabug-flutter.git
-      ref: snapshot/feat/support-manual-screen-loading
+      ref: snapshot/feat/support-manual-screen-loading-end-screen-loading
 
 
 dev_dependencies:
