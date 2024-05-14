@@ -5,6 +5,11 @@ import 'package:instabug_flutter/instabug_flutter.dart';
 import 'package:instabug_flutter_modular/instabug_flutter_modular.dart';
 
 void main() {
+  Instabug.init(
+    token: 'ed6f659591566da19b67857e1b9d40ab',
+    invocationEvents: [InvocationEvent.floatingButton],
+  );
+
   runApp(
     ModularApp(
       module: InstabugModule(AppModule()),
@@ -22,15 +27,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-
-  @override
-  void initState() {
-    super.initState();
-    Instabug.init(
-      token: 'ed6f659591566da19b67857e1b9d40ab',
-      invocationEvents: [InvocationEvent.floatingButton],
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
