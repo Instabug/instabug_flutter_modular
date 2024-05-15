@@ -5,6 +5,7 @@ import 'package:instabug_flutter/instabug_flutter.dart';
 import 'package:instabug_flutter_modular/instabug_flutter_modular.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   Instabug.init(
     token: 'ed6f659591566da19b67857e1b9d40ab',
     invocationEvents: [InvocationEvent.floatingButton],
