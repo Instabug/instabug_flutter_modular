@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Text(title),
+      child: Text(title , textAlign: TextAlign.center,),
     );
   }
 }

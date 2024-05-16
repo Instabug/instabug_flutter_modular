@@ -11,6 +11,14 @@ class _HomePageState extends State<HomePage> {
   bool _inatsbug = true, _apm = true, _screenLoading = true, _uiTrace = true;
 
   @override
+  void didChangeDependencies() async{
+    super.didChangeDependencies();
+    _inatsbug = await Instabug.isEnabled();
+    _apm = await APM.isEnabled();
+    _screenLoading = await APM.isScreenLoadingEnabled();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),

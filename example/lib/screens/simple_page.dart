@@ -27,7 +27,7 @@ class SimplePage extends StatelessWidget {
               onPressed: () =>
                   _extendScreenLoading(context, extendedMicroseconds),
               title:
-                  'Extend Screen Loading for $extendedMicroseconds microseconds',
+                  'Extend SCL for $extendedMicroseconds μs',
             ),
             CustomButton(
               onPressed: () {
