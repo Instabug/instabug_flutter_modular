@@ -16,8 +16,10 @@ import 'instabug_modular_manager_test.mocks.dart';
   MockSpec<InstabugModule>(),
   MockSpec<BuildContext>(),
   MockSpec<ModularArguments>(),
-  MockSpec<Widget>()
+  MockSpec<Widget>(),
+  MockSpec<CustomTransition>(),
 ])
+// @GenerateMocks([CustomTransition, TransitionType])
 void main() {
   late MockInstabugModule mockInstabugModule;
   late MockModule mockModule;
@@ -86,7 +88,9 @@ void main() {
     expect(wrappedRoute.context.module, isA<InstabugModule>());
   });
 
-  test('[wrapRoute] with [ParallelRoute] should wrap child with [InstabugCaptureScreenLoading]', () {
+  test(
+      '[wrapRoute] with [ParallelRoute] should wrap child with [InstabugCaptureScreenLoading]',
+      () {
     // Arrange
     final route = ChildRoute(
       '/profile',
@@ -102,6 +106,77 @@ void main() {
     // Assert
     expect(wrappedRoute.name, '/profile');
     expect(widget, isA<InstabugCaptureScreenLoading>());
+  });
+
+  test(
+      '[wrapRoutes] should wrap child property with [InstabugCaptureScreenLoading] and preserve the rest of its properties',
+      () {
+    // Arrange
+    final customTransition = MockCustomTransition();
+    const duration = Duration.zero;
+    final List<RouteGuard> guards = [];
+    const transition = TransitionType.downToUp;
+
+    final homeRoute = ChildRoute(
+      '/home',
+      child: (context, args) => mockWidget,
+      customTransition: customTransition,
+      duration: duration,
+      guards: guards,
+      transition: transition,
+    );
+
+    final profileRoute = ChildRoute(
+      '/profile',
+      child: (context, args) => mockWidget,
+      customTransition: customTransition,
+      duration: duration,
+      guards: guards,
+      transition: transition,
+    );
+    final routes = [
+      homeRoute,
+      profileRoute
+    ];
+
+
+    // Act
+    final wrappedRoutes = InstabugModularManager.instance.wrapRoutes(routes) as List<dynamic>;
+
+    for (var element in wrappedRoutes) {
+      final widget = element.child(mockContext, mockArgs);
+
+      // Assert
+      expect(widget, isA<InstabugCaptureScreenLoading>());
+      expect(element.customTransition, customTransition );
+      expect(element.duration, duration);
+      expect(element.transition, transition);
+    }
+
+  });
+
+  test('[wrapRoutes] with nested route', () {
+    // Arrange
+    final routes = [
+      ChildRoute(
+        '/users',
+        child: (_, __) => mockWidget,
+        children: [
+          ModuleRoute('/list', module: mockModule),
+          ModuleRoute('/details', module: mockModule),
+        ],
+      ),
+    ];
+
+    // Act
+    final wrappedRoutes = InstabugModularManager.instance.wrapRoutes(routes);
+
+    // Assert
+    expect(wrappedRoutes.length, 1);
+    expect(wrappedRoutes[0].name, '/users');
+    expect(wrappedRoutes[0].children.length, 2);
+    expect(wrappedRoutes[0].children[0].name, '/list');
+    expect(wrappedRoutes[0].children[1].name, '/details');
   });
 
   test('[wrapRoute] with custom parent path should add it to the path', () {

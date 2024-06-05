@@ -6,7 +6,7 @@
 import 'dart:async' as _i6;
 
 import 'package:flutter/foundation.dart' as _i5;
-import 'package:flutter/src/widgets/framework.dart' as _i4;
+import 'package:flutter/material.dart' as _i4;
 import 'package:flutter/src/widgets/notification_listener.dart' as _i8;
 import 'package:flutter_modular/flutter_modular.dart' as _i3;
 import 'package:instabug_flutter_modular/src/instabug_module.dart' as _i7;
@@ -124,6 +124,16 @@ class _FakeElement_7 extends _i1.SmartFake implements _i4.Element {
   @override
   String toString({_i5.DiagnosticLevel? minLevel = _i5.DiagnosticLevel.info}) =>
       super.toString();
+}
+
+class _FakeDuration_8 extends _i1.SmartFake implements Duration {
+  _FakeDuration_8(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [Module].
@@ -1000,4 +1010,92 @@ class MockWidget extends _i1.Mock implements _i4.Widget {
   @override
   String toString({_i5.DiagnosticLevel? minLevel = _i5.DiagnosticLevel.info}) =>
       super.toString();
+}
+
+/// A class which mocks [CustomTransition].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCustomTransition extends _i1.Mock implements _i3.CustomTransition {
+  @override
+  _i4.Widget Function(
+    _i4.BuildContext,
+    _i4.Animation<double>,
+    _i4.Animation<double>,
+    _i4.Widget,
+  ) get transitionBuilder => (super.noSuchMethod(
+        Invocation.getter(#transitionBuilder),
+        returnValue: (
+          _i4.BuildContext __p0,
+          _i4.Animation<double> __p1,
+          _i4.Animation<double> __p2,
+          _i4.Widget __p3,
+        ) =>
+            _FakeWidget_2(
+          this,
+          Invocation.getter(#transitionBuilder),
+        ),
+        returnValueForMissingStub: (
+          _i4.BuildContext __p0,
+          _i4.Animation<double> __p1,
+          _i4.Animation<double> __p2,
+          _i4.Widget __p3,
+        ) =>
+            _FakeWidget_2(
+          this,
+          Invocation.getter(#transitionBuilder),
+        ),
+      ) as _i4.Widget Function(
+        _i4.BuildContext,
+        _i4.Animation<double>,
+        _i4.Animation<double>,
+        _i4.Widget,
+      ));
+
+  @override
+  set pageBuilder(
+          _i4.Widget Function(
+            _i4.BuildContext,
+            _i4.Animation<double>,
+            _i4.Animation<double>,
+          )? _pageBuilder) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #pageBuilder,
+          _pageBuilder,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Duration get transitionDuration => (super.noSuchMethod(
+        Invocation.getter(#transitionDuration),
+        returnValue: _FakeDuration_8(
+          this,
+          Invocation.getter(#transitionDuration),
+        ),
+        returnValueForMissingStub: _FakeDuration_8(
+          this,
+          Invocation.getter(#transitionDuration),
+        ),
+      ) as Duration);
+
+  @override
+  Duration get reverseTransitionDuration => (super.noSuchMethod(
+        Invocation.getter(#reverseTransitionDuration),
+        returnValue: _FakeDuration_8(
+          this,
+          Invocation.getter(#reverseTransitionDuration),
+        ),
+        returnValueForMissingStub: _FakeDuration_8(
+          this,
+          Invocation.getter(#reverseTransitionDuration),
+        ),
+      ) as Duration);
+
+  @override
+  bool get opaque => (super.noSuchMethod(
+        Invocation.getter(#opaque),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 }
