@@ -4,6 +4,7 @@
 android/**/generated/
 ios/**/Generated/
 
+
 # Miscellaneous
 *.class
 *.log
