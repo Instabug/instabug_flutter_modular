@@ -1,21 +1,33 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_modular_demo_app/modules.dart';
 import 'package:instabug_flutter/instabug_flutter.dart';
 import 'package:instabug_flutter_modular/instabug_flutter_modular.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  Instabug.init(
-    token: 'ed6f659591566da19b67857e1b9d40ab',
-    invocationEvents: [InvocationEvent.floatingButton],
-  );
+void main()  {
+  runZonedGuarded(
+    () {
+      WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(
-    ModularApp(
-      module: InstabugModule(AppModule()),
-      child: const MyApp(),
-    ),
+       Instabug.init(
+        token: 'e8e5d1d5b43887d5de2932edcf3bbe1f',
+        invocationEvents: [InvocationEvent.floatingButton],
+        debugLogsLevel: LogLevel.verbose,
+      );
+
+      FlutterError.onError = (FlutterErrorDetails details) {
+        Zone.current.handleUncaughtError(details.exception, details.stack!);
+      };
+      runApp(
+        ModularApp(
+          module: InstabugModule(AppModule()),
+          child: const MyApp(),
+        ),
+      );
+    },
+    CrashReporting.reportCrash,
   );
 }
 
@@ -27,12 +39,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routeInformationParser: Modular.routeInformationParser,
-      routerDelegate: Modular.routerDelegate,
+      routerDelegate: Modular.routerDelegate..setObservers([InstabugNavigatorObserver()]),
       title: 'Flutter Modular Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
