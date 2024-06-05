@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:instabug_flutter_modular/instabug_flutter_modular.dart';
 import 'package:instabug_flutter_modular/src/instabug_modular_manager.dart';
+//ignore_for_file:depend_on_referenced_packages
 import 'package:modular_interfaces/src/route/modular_arguments.dart';
 
 import 'package:instabug_flutter/instabug_flutter.dart';
