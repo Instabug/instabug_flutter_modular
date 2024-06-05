@@ -2,7 +2,7 @@ version: 2
 jobs:
    test:
     docker:
-      - image: ghcr.io/cirruslabs/flutter:latest
+      - image: ghcr.io/cirruslabs/flutter:3.10.5
       
     steps:
       - checkout
