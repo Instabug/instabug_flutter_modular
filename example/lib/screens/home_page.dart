@@ -1,4 +1,5 @@
 part of '../screens.dart';
+//ignore_for_file:invalid_use_of_internal_member
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
