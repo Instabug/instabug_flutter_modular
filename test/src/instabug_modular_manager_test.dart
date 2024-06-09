@@ -20,7 +20,6 @@ import 'instabug_modular_manager_test.mocks.dart';
   MockSpec<Widget>(),
   MockSpec<CustomTransition>(),
 ])
-// @GenerateMocks([CustomTransition, TransitionType])
 void main() {
   late MockInstabugModule mockInstabugModule;
   late MockModule mockModule;
@@ -135,25 +134,21 @@ void main() {
       guards: guards,
       transition: transition,
     );
-    final routes = [
-      homeRoute,
-      profileRoute
-    ];
-
+    final routes = [homeRoute, profileRoute];
 
     // Act
-    final wrappedRoutes = InstabugModularManager.instance.wrapRoutes(routes) as List<dynamic>;
+    final wrappedRoutes =
+        InstabugModularManager.instance.wrapRoutes(routes) as List<dynamic>;
 
     for (var element in wrappedRoutes) {
       final widget = element.child(mockContext, mockArgs);
 
       // Assert
       expect(widget, isA<InstabugCaptureScreenLoading>());
-      expect(element.customTransition, customTransition );
+      expect(element.customTransition, customTransition);
       expect(element.duration, duration);
       expect(element.transition, transition);
     }
-
   });
 
   test('[wrapRoutes] with nested route', () {

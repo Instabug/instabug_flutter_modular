@@ -6,12 +6,12 @@ import 'package:flutter_modular_demo_app/modules.dart';
 import 'package:instabug_flutter/instabug_flutter.dart';
 import 'package:instabug_flutter_modular/instabug_flutter_modular.dart';
 
-void main()  {
+void main() {
   runZonedGuarded(
     () {
       WidgetsFlutterBinding.ensureInitialized();
 
-       Instabug.init(
+      Instabug.init(
         token: 'e8e5d1d5b43887d5de2932edcf3bbe1f',
         invocationEvents: [InvocationEvent.floatingButton],
         debugLogsLevel: LogLevel.verbose,
@@ -43,7 +43,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routeInformationParser: Modular.routeInformationParser,
-      routerDelegate: Modular.routerDelegate..setObservers([InstabugNavigatorObserver()]),
+      routerDelegate: Modular.routerDelegate
+        ..setObservers([InstabugNavigatorObserver()]),
       title: 'Flutter Modular Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
