@@ -19,3 +19,37 @@ dependencies:
 ```sh
 flutter pub get
 ```
+
+## Usage
+
+1. Wrap your `AppParentModule` inside `InstabugModule`:
+
+
+```dart
+
+void main() {
+  //...
+  
+  runApp(
+    ModularApp(
+      module: InstabugModule(AppModule()),
+      child: const MyApp(),
+    ),
+  );
+}
+```
+
+2. Add `InstabugNavigatorObserver` to your navigation observers list:
+
+```dart
+@override
+Widget build(BuildContext context) {
+  return MaterialApp.router(
+    routeInformationParser: Modular.routeInformationParser,
+    routerDelegate: Modular.routerDelegate
+      ..setObservers([InstabugNavigatorObserver()]),
+
+    // ...
+  );
+}
+```

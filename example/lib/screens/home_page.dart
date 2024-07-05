@@ -9,12 +9,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _inatsbug = true, _apm = true, _screenLoading = true, _uiTrace = true;
+  bool _instabug = true, _apm = true, _screenLoading = true, _uiTrace = true;
 
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-    _inatsbug = await Instabug.isEnabled();
+    _instabug = await Instabug.isEnabled();
     _apm = await APM.isEnabled();
     _screenLoading = await APM.isScreenLoadingEnabled();
   }
@@ -30,10 +30,10 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CustomSwitchListTile(
-              value: _inatsbug,
+              value: _instabug,
               onChanged: (value) {
                 Instabug.setEnabled(value);
-                setState(() => _inatsbug = value);
+                setState(() => _instabug = value);
               },
               title: "Instabug",
             ),
