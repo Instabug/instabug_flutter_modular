@@ -2,6 +2,8 @@ name: instabug_flutter_modular
 description: An add-on for the Instabug Flutter SDK that provides screen loading support for Flutter Modular v5.
 version: 0.0.1
 homepage: https://www.instabug.com
+# TODO: remove publish_to: after changing instabug_flutter dependency  to the production version
+publish_to: none
 
 environment:
   sdk: '>=3.1.2 <4.0.0'
@@ -16,10 +18,13 @@ dependencies:
     # TODO: Change Git to the package on Pub once manual screen loading support is out in the official SDK.
     git:
       url: git@github.com:Instabug/instabug-flutter.git
-      ref: snapshot/feat/support-manual-screen-loading
+      ref: snapshot/feat/support-manual-screen-loading-full-snapshot
 
 
 dev_dependencies:
+  build_runner: ^2.0.3
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  # mockito v5.2.0 is needed for running Flutter 2 tests on CI
+  mockito: '>=5.2.0 <=5.4.2'
