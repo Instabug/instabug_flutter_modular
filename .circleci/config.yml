@@ -25,16 +25,16 @@ workflows:
   build-test:
     jobs:
       - test
-      - hold:
+      - hold_release:
           type: approval
           requires:
             - test
           filters:
             branches:
-              only: master
+              only: main
       - release:
           requires:
-            - hold
+            - hold_release
           filters:
             branches:
-              only: master
+              only: main
