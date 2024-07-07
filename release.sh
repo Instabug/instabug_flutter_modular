@@ -5,7 +5,7 @@ if [ ! "${VERSION}" ] || [ -z "${VERSION}" ];then
     exit 1
 else 
     mkdir -p .pub-cache
-    cat <<EOF > $HOME/.pub-cache/credentials.json
+    cat <<EOF > $HOME/.config/dart/pub-credentials.json
     ${PUB_CREDENTIALS}
 
 EOF
