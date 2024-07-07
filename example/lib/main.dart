@@ -12,7 +12,7 @@ void main() {
       WidgetsFlutterBinding.ensureInitialized();
 
       Instabug.init(
-        token: 'e8e5d1d5b43887d5de2932edcf3bbe1f',
+        token: '6b41bc30dd42aac50794ef3ec8f74a74',
         invocationEvents: [InvocationEvent.floatingButton],
         debugLogsLevel: LogLevel.verbose,
       );
