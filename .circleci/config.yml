@@ -31,10 +31,10 @@ workflows:
             - test
           filters:
             branches:
-              only: master
+              only: main
       - release:
           requires:
             - hold
           filters:
             branches:
-              only: master
+              only: main
