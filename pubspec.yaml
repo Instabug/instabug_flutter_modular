@@ -1,6 +1,6 @@
 name: instabug_flutter_modular
 description: An add-on for the Instabug Flutter SDK that provides screen loading support for Flutter Modular v5.
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.instabug.com
 
 environment:
@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   meta: ^1.3.0
   flutter_modular: '>=5.0.0 <6.0.0'
-  instabug_flutter: '>=13.2.0 <14.0.0'
+  instabug_flutter: '>=13.2.0 <15.0.0'
 
 
 dev_dependencies:
